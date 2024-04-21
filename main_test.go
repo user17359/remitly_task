@@ -6,7 +6,7 @@ import (
 
 // TestAsterisk uses file where Resource field contains a single asterisk
 func TestAsterisk(t *testing.T) {
-	got := Verify("resorces/asterisk.json")
+	got := Verify("resources/asterisk.json")
 	want := false
 
 	if got != want {
@@ -16,7 +16,7 @@ func TestAsterisk(t *testing.T) {
 
 // TestNoAsterisk uses file where Resource field contains words "lorem ipsum"
 func TestNoAsterisk(t *testing.T) {
-	got := Verify("resorces/no_asterisk.json")
+	got := Verify("resources/no_asterisk.json")
 	want := true
 
 	if got != want {
@@ -26,7 +26,7 @@ func TestNoAsterisk(t *testing.T) {
 
 // TestInvalidPath uses filepath that does not exist
 func TestInvalidPath(t *testing.T) {
-	got := Verify("resorces/test.json")
+	got := Verify("resources/test.json")
 	want := true
 
 	if got != want {
