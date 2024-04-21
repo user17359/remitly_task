@@ -1,18 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
 
-func main() {
-	jsonFile, err := os.Open("asterisk.json")
+func Verify(path string) bool {
+	jsonFile, err := os.Open(path)
 
 	if err != nil {
-		fmt.Println(err)
+		return true
 	} else {
-		fmt.Println("import sucessful")
+		defer jsonFile.Close()
+		return true
 	}
-
-	defer jsonFile.Close()
 }
