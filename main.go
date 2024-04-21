@@ -35,3 +35,9 @@ func Verify(path string) bool {
 		return true
 	}
 }
+
+func main() {
+	// Puting first argument as the file path
+	argsWithoutProg := os.Args[1:]
+	println(Verify(argsWithoutProg[0]))
+}
