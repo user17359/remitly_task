@@ -69,7 +69,7 @@ func TestMultiplePoliciesNoAsterisk(t *testing.T) {
 // TestMultiplePolicies uses file with three policies, last one having asterisk in Resource field
 func TestMultiplePoliciesLastAsterisk(t *testing.T) {
 	got := Verify("resources/multiple_policies_last_asterisk.json")
-	want := true
+	want := false
 
 	if got != want {
 		t.Errorf("got %t, wanted %t", got, want)

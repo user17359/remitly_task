@@ -6,43 +6,31 @@ import (
 	"os"
 )
 
-type Policy struct {
-	PolicyName     string         `json:"PolicyName"`
-	PolicyDocument PolicyDocument `json:"PolicyDocument"`
-}
-
-type PolicyDocument struct {
-	Version   string      `json:"Version"`
-	Statement []Statement `json:"Statement"`
-}
-
-type Statement struct {
-	Sid       string   `json:"Sid"`
-	Effect    string   `json:"Allow"`
-	Principal string   `json:"Principal"`
-	Action    []string `json:"Action"`
-	Resource  string   `json:"Resource"`
-	Condition string   `json:"Condition"`
-}
-
 func Verify(path string) bool {
+
+	// Opening file at given path
 	jsonFile, err := os.Open(path)
 
+	// Checking if any errors occured at oppening
 	if err != nil {
 		return true
 	} else {
+		// Reading file as binary
 		byteValue, _ := io.ReadAll(jsonFile)
 
 		var policy Policy
 
+		// Unmarshaling into Policy object
 		json.Unmarshal(byteValue, &policy)
 
+		// Checking for asterisk in all Statements
 		for i := 0; i < len(policy.PolicyDocument.Statement); i++ {
 			if policy.PolicyDocument.Statement[i].Resource == "*" {
 				return false
 			}
 		}
 
+		// Closing file after everything is finished
 		defer jsonFile.Close()
 		return true
 	}
