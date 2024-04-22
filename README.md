@@ -1,4 +1,4 @@
-# Recrutation task for Remify
+# Recrutation task for Remitly
 Built with Golang version go1.22.2 
 
 ## How to run
